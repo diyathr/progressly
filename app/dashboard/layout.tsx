@@ -199,16 +199,19 @@ export default function DashboardLayout({
           {/* top right time + avatar */}
           <div className="absolute right-10 top-6 flex items-center gap-6">
             <div className="text-lg font-bold text-[#0f172a]">{time}</div>
-            <div className="h-12 w-12 rounded-full overflow-hidden bg-slate-200">
-              <Image
-                src="/avatar icon.avif"
-                alt="User avatar"
-                width={48}
-                height={48}
-                className="h-full w-full object-cover"
-                priority
-              />
-            </div>
+            <Link href="/account" className="group">
+              <div className="h-12 w-12 rounded-full overflow-hidden bg-slate-200 ring-2 ring-transparent group-hover:ring-black/10 transition">
+                <Image
+                  src="/avatar icon.avif"
+                  alt="User avatar"
+                  width={48}
+                  height={48}
+                  className="h-full w-full object-cover"
+                  priority
+                />
+              </div>
+            </Link>
+
 
           </div>
 
