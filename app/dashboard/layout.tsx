@@ -14,6 +14,10 @@ import {
   CreditCard,
   LifeBuoy,
   Settings,
+  LayoutGrid,
+  BarChart3, 
+  Target, 
+  Bell
 } from "lucide-react";
 
 
@@ -47,19 +51,28 @@ export default function DashboardLayout({
   }, []);
 
   const nav = [
-    { href: "/dashboard", label: "Overview", icon: <OverviewIcon /> },
-    {
-      href: "/dashboard/progress-summary",
-      label: "Progress",
-      icon: <ProgressIcon />,
-    },
-    {
-      href: "/dashboard/upcoming-classes",
-      label: "Upcoming classes",
-      icon: <TargetIcon />,
-    },
-    { href: "/dashboard/notifications", label: "Notifications", icon: <WaveIcon /> },
-  ];
+  {
+    href: "/dashboard",
+    label: "Overview",
+    icon: <LayoutGrid size={26} className="text-black" />,
+  },
+  {
+    href: "/dashboard/progress-summary",
+    label: "Progress",
+    icon: <BarChart3 size={26} className="text-black" />,
+  },
+  {
+    href: "/dashboard/upcoming-classes",
+    label: "Upcoming classes",
+    icon: <Target size={26} className="text-black" />,
+  },
+  {
+    href: "/dashboard/notifications",
+    label: "Notifications",
+    icon: <Bell size={26} className="text-black" />,
+  },
+];
+
 
   return (
     <div className="min-h-screen bg-white">
@@ -393,42 +406,61 @@ function DarkNavIcon({
   active?: boolean;
   href: string;
 }) {
-  return (
-    <div className="relative group z-0">
-      {/* active indicator */}
-      {active && (
-        <span className="absolute left-[-10px] top-1/2 -translate-y-1/2 h-10 w-1.5 rounded-full bg-white" />
-      )}
+  const [show, setShow] = useState(false);
+  const [pos, setPos] = useState<{ top: number; left: number }>({ top: 0, left: 0 });
 
+  function onEnter(e: React.MouseEvent<HTMLAnchorElement>) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setPos({
+      top: rect.top + rect.height / 2,
+      left: rect.right + 12,
+    });
+    setShow(true);
+  }
+
+  function onLeave() {
+    setShow(false);
+  }
+
+  return (
+    <>
       <Link
         href={href}
         aria-label={label}
+        onMouseEnter={onEnter}
+        onMouseLeave={onLeave}
         className={[
-          "h-14 w-14 rounded-2xl flex items-center justify-center",
+          "relative h-14 w-14 rounded-2xl flex items-center justify-center",
           "hover:bg-white/10 transition",
           active ? "bg-white/10" : "",
         ].join(" ")}
       >
+        {/* active indicator */}
+        {active && (
+          <span className="absolute left-[-10px] top-1/2 -translate-y-1/2 h-10 w-1.5 rounded-full bg-white" />
+        )}
         {icon}
       </Link>
 
-      {/* tooltip */}
-      {/* tooltip */}
-      <div
-        className={[
-          "pointer-events-none absolute left-[70px] top-1/2 -translate-y-1/2",
-          "opacity-0 group-hover:opacity-100 transition",
-          "bg-black/80 text-white text-xs font-semibold px-3 py-2 rounded-lg",
-          "whitespace-nowrap shadow-lg",
-          "z-[9999]", // always above everything
-        ].join(" ")}
-      >
-        {label}
-      </div>
-
-    </div>
+      {/* tooltip (fixed -> always on top, never clipped) */}
+      {show && (
+        <div
+          style={{ top: pos.top, left: pos.left }}
+          className={[
+            "fixed -translate-y-1/2",
+            "bg-black/80 text-white text-xs font-semibold",
+            "px-3 py-2 rounded-lg whitespace-nowrap shadow-lg",
+            "z-[99999] pointer-events-none",
+          ].join(" ")}
+        >
+          {label}
+        </div>
+      )}
+    </>
   );
 }
+
+
 
 
 
