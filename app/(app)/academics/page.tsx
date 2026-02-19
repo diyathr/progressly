@@ -1,8 +1,9 @@
-export default function AcademicsPage() {
+export default function AcademicsHome() {
+  // This is the “main content area” below the greeting
   return (
-    <div>
-      <h2 className="text-2xl font-extrabold text-black">Academics</h2>
-      <p className="mt-2 text-black/60">Coming soon.</p>
+    <div className="flex justify-center">
+      {/* placeholder (since you said ignore tasks card) */}
+      <div className="w-[900px] h-[280px] rounded-[28px] bg-[#F4F4F4] shadow-sm" />
     </div>
   );
 }
