@@ -73,14 +73,19 @@ export default function AcademicsLayout({ children }: { children: React.ReactNod
                   )}
 
                   <div
-                    className={[
-                      "relative z-10 flex items-center gap-6 text-[#0f172a] font-semibold",
-                      active ? "px-8 py-5" : "px-2 py-3 opacity-90 hover:opacity-100",
-                    ].join(" ")}
-                  >
-                    <span>{item.icon}</span>
-                    <span>{item.label}</span>
-                  </div>
+  className={[
+    "relative z-10 flex items-center gap-6 text-[#0f172a] font-semibold",
+    active ? "px-8 py-5" : "px-2 py-3 opacity-90 hover:opacity-100",
+  ].join(" ")}
+>
+  <span className="shrink-0">{item.icon}</span>
+
+  {/* ✅ keep text in one line without changing sidebar width */}
+  <span className="flex-1 min-w-0 whitespace-nowrap">
+    {item.label}
+  </span>
+</div>
+
                 </Link>
               );
             })}
