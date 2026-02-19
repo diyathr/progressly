@@ -3,6 +3,14 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --brand: #163B57;      /* primary navy */
+  --brand-2: #60A5FA;    /* soft blue */
+  --accent: #22D3EE;     /* cyan accent */
+  --bg: #ffffff;
+  --surface: #f1f5f9;
+  --text: #0b1220;
+  --muted: #64748b;
+  --border: #e2e8f0;
 }
 
 @theme inline {
