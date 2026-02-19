@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   LayoutDashboard,
   GraduationCap,
@@ -15,25 +14,8 @@ import {
   Settings,
 } from "lucide-react";
 
-function formatTime(d: Date) {
-  return d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: true });
-}
-function getGreeting() {
-  const hour = new Date().getHours();
-  if (hour < 12) return "GOOD MORNING";
-  if (hour < 18) return "GOOD AFTERNOON";
-  return "GOOD EVENING";
-}
-
 export default function AppShellLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const [time, setTime] = useState(formatTime(new Date()));
-  const username = "DUMIDU";
-
-  useEffect(() => {
-    const t = setInterval(() => setTime(formatTime(new Date())), 1000);
-    return () => clearInterval(t);
-  }, []);
 
   return (
     <div className="min-h-screen bg-white">
@@ -44,13 +26,13 @@ export default function AppShellLayout({ children }: { children: React.ReactNode
           <div className="flex flex-col gap-8">
             <DarkNavIcon
               label="Dashboards"
-              href="/dashboard"
+              href="/dashboard/overview"
               active={pathname.startsWith("/dashboard")}
               icon={<LayoutDashboard size={28} color="white" />}
             />
             <DarkNavIcon
               label="Academics"
-              href="/academics"
+              href="/academics/assessments"
               active={pathname.startsWith("/academics")}
               icon={<GraduationCap size={28} color="white" />}
             />
@@ -93,10 +75,8 @@ export default function AppShellLayout({ children }: { children: React.ReactNode
           </div>
         </aside>
 
-        {/* ✅ Content area (each section adds its own grey sidebar in its own layout) */}
-        <div className="flex-1 relative">
-          <div className="pt-10">{children}</div>
-        </div>
+        {/* ✅ Content only */}
+        <div className="flex-1">{children}</div>
       </div>
     </div>
   );
