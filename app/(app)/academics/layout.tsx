@@ -55,11 +55,6 @@ export default function AcademicsLayout({
   // ✅ Academics sub-navigation (grey sidebar)
   const nav = [
     {
-      href: "/academics",
-      label: "Overview",
-      icon: <LayoutGrid size={26} className="text-black" />,
-    },
-    {
       href: "/academics/assessments",
       label: "Assessments",
       icon: <ClipboardList size={26} className="text-black" />,
