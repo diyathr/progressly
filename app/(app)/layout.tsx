@@ -13,9 +13,19 @@ import {
   LifeBuoy,
   Settings,
 } from "lucide-react";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { isLoggedIn } from "@/lib/auth";
 
 export default function AppShellLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+const router = useRouter();
+
+useEffect(() => {
+  if (!isLoggedIn()) {
+    router.replace("/login");
+  }
+}, [router]);
 
   return (
     <div className="min-h-screen bg-white">

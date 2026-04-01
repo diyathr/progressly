@@ -5,9 +5,16 @@ import Image from "next/image";
 import { User, KeyRound, ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { setLoggedIn } from "@/lib/auth";
 
 export default function LoginPage() {
+  const router = useRouter();
   const [enter, setEnter] = useState(false);
+  const handleLogin = () => {
+  setLoggedIn(true);
+  router.push("/dashboard");
+};
 
   useEffect(() => {
     requestAnimationFrame(() => setEnter(true));
@@ -115,6 +122,10 @@ export default function LoginPage() {
                       {/* Login */}
                       <button
                         type="button"
+                          onClick={() => {
+                            setLoggedIn(true);
+                            router.push("/dashboard/overview");
+                          }}
                         className="cursor-pointer mx-auto mt-2 flex w-44 items-center justify-center gap-2 rounded-full border border-slate-300/60 bg-white/28 px-6 py-3 font-semibold text-slate-800 shadow-md hover:bg-white/45 active:scale-[0.99]"
                       >
                         <ArrowRight size={18} className="text-slate-700" />

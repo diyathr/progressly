@@ -6,17 +6,9 @@ import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import {
-<<<<<<< HEAD
-  ClipboardList,
-  BadgeCheck,
-  BookOpen,
-  ListChecks,
-  MessageSquareText,
-=======
   Anchor,
   History,
   OctagonMinus,
->>>>>>> 19b52b7d8afbe046e99fca0798db8db7ba5fff58
 } from "lucide-react";
 
 function formatTime(d: Date) {
@@ -27,11 +19,7 @@ function formatTime(d: Date) {
   });
 }
 
-<<<<<<< HEAD
-export default function AcademicsLayout({ children }: { children: React.ReactNode }) {
-=======
 export default function AttendanceLayout({ children }: { children: React.ReactNode }) {
->>>>>>> 19b52b7d8afbe046e99fca0798db8db7ba5fff58
   const pathname = usePathname();
 
   // ✅ keep time/avatar in academics (optional). If you don’t want it, delete this block.
@@ -42,22 +30,12 @@ export default function AttendanceLayout({ children }: { children: React.ReactNo
   }, []);
 
   const nav = [
-<<<<<<< HEAD
-    { href: "/academics/assessments", label: "Assessments", icon: <ClipboardList size={26} className="text-black" /> },
-    { href: "/academics/marks-grades", label: "Marks & Grades", icon: <BadgeCheck size={26} className="text-black" /> },
-    { href: "/academics/subjects-classes", label: "Subjects & Classes", icon: <BookOpen size={26} className="text-black" /> },
-    { href: "/academics/syllabus-topics", label: "Syllabus & Topics", icon: <ListChecks size={26} className="text-black" /> },
-    { href: "/academics/teacher-feedback", label: "Teacher Feedback", icon: <MessageSquareText size={26} className="text-black" /> },
-  ];
-
-=======
     { href: "/attendance/overview", label: "Attendance Overview", icon: <Anchor size={26} className="text-black" /> },
     { href: "/attendance/daily-history", label: "Daily History", icon: <History size={26} className="text-black" /> },
     { href: "/attendance/leave-requests", label: "Leave Requests", icon: <OctagonMinus size={26} className="text-black" /> },
   ];
 
 
->>>>>>> 19b52b7d8afbe046e99fca0798db8db7ba5fff58
   return (
     <div className="min-h-screen bg-white">
       <div className="flex min-h-screen">
@@ -116,12 +94,8 @@ export default function AttendanceLayout({ children }: { children: React.ReactNo
           {/* Optional: top right time + avatar */}
           <div className="absolute right-10 top-6 flex items-center gap-6">
             <div className="text-lg font-bold text-[#0f172a]">{time}</div>
-<<<<<<< HEAD
-            <div className="h-12 w-12 rounded-full overflow-hidden bg-slate-200">
-=======
             <Link href="/account" className="group">
             <div className="h-12 w-12 rounded-full overflow-hidden bg-slate-200 group-hover:ring-black/10 transition">
->>>>>>> 19b52b7d8afbe046e99fca0798db8db7ba5fff58
               <Image
                 src="/avatar icon.avif"
                 alt="User avatar"
@@ -129,14 +103,9 @@ export default function AttendanceLayout({ children }: { children: React.ReactNo
                 height={48}
                 className="h-full w-full object-cover"
                 priority
-<<<<<<< HEAD
-              />
-            </div>
-=======
               />    
             </div>
             </Link>
->>>>>>> 19b52b7d8afbe046e99fca0798db8db7ba5fff58
           </div>
 
           {/* Page content ONLY */}
@@ -145,8 +114,4 @@ export default function AttendanceLayout({ children }: { children: React.ReactNo
       </div>
     </div>
   );
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 19b52b7d8afbe046e99fca0798db8db7ba5fff58
